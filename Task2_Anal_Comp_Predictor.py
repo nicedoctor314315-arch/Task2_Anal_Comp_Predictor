@@ -81,7 +81,8 @@ STR = st.sidebar.number_input("Soluble Transferrin Receptor (mg/L):", min_value=
 NST = st.sidebar.selectbox("Nutritional Support Therapy:", options=[0, 1], format_func=lambda x: 'Yes (1)' if x == 0 else 'No (0)')
 
 # Process the input and make a prediction
-feature_values = [sex, age, std, dur, GSH, DB, l4, vom, AOCH, ACH, TIBC, Fib, NST]
+feature_values = [cod, dur, AOO, Smoke, ACH, GSH, Dia, GB, Vom, ABCH, ANCH, FOLS, EIM, CDAI, ACT, 
+                  RBC, HB, MCV, CRP, TP, UN, SP, UA, FA, V12, TIBC, SF, STR, NST]
 features = np.array([feature_values])  # 转换为NumPy数组
 
 if st.button("Make Prediction"):  # 如果点击了预测按钮
@@ -146,4 +147,5 @@ if st.button("Make Prediction"):  # 如果点击了预测按钮
     # Show the plot
 
     st.pyplot(plt)  # 显示图表
+
 
