@@ -7,14 +7,6 @@ import matplotlib.pyplot as plt
 # Load the trained model
 model = joblib.load('Task2_Anal_Comp_pred.pkl')  # 加载训练好的RF模型
 
-'''
-Course of diagnosis,Duration,Age of onset,Smoking History,Alcohol Consumption History,
-Gastrointestinal_Surgery_History,Diarrhea,Gastrointestinal Bleeding,Vomiting,Abdominal_Complication_History,
-Anal_Complication_History,Frequency of Loose Stools,Extra-intestinal Manifestations,CDAI Score,
-Activity,RBC,HB,MCV,CRP(mg/l),TP,Urea Nitrogen,Serum Potassium,Uric Acid,Folic Acid (nmol/L),
-vitB12,Total Iron-Binding Capacity (umol/l),Serum Ferritin (ng/ml),Soluble Transferrin Receptor (mg/L),Nutritional Support Therapy
-'''
-
 # Streamlit UI
 st.title("Anal Complications Predictor for CD patient in coming 12 months")
 
@@ -155,3 +147,4 @@ if st.button("Make Prediction"):  # 如果点击了预测按钮
     # Show the plot
 
     st.pyplot(plt)  # 显示图表
+
