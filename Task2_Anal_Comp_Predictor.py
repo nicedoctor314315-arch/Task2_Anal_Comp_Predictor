@@ -65,7 +65,7 @@ MCV = st.sidebar.number_input("MCV (fL):", min_value=0, max_value=1000, value=0)
 CRP = st.sidebar.number_input("CRP (mg/L):", min_value=0, max_value=1000, value=0)
 TP = st.sidebar.number_input("Total Protein (g/L):", min_value=0, max_value=1000, value=0)
 UN = st.sidebar.number_input("Urea Nitrogen (mmol/L):", min_value=0, max_value=1000, value=0)
-SP = st.sidebar.number_input("Urea Nitrogen (mmol/L):", min_value=0, max_value=1000, value=0)
+SP = st.sidebar.number_input("Serum Potassium (mmol/L):", min_value=0, max_value=1000, value=0)
 UA = st.sidebar.number_input("Uric Acid (μmol/L):", min_value=0, max_value=1000, value=0)
 FA = st.sidebar.number_input("Folic Acid (nmol/L):", min_value=0, max_value=1000, value=0)
 V12 = st.sidebar.number_input("VitB12 (pmol/L):", min_value=0, max_value=2000, value=0)
@@ -147,5 +147,6 @@ if st.button("Make Prediction"):  # 如果点击了预测按钮
     # Show the plot
 
     st.pyplot(plt)  # 显示图表
+
 
 
