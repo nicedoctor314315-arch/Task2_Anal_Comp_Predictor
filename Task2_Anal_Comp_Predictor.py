@@ -7,6 +7,14 @@ import matplotlib.pyplot as plt
 # Load the trained model
 model = joblib.load('Task2_Anal_Comp_pred.pkl')  # 加载训练好的RF模型
 
+'''
+Course of diagnosis,Duration,Age of onset,Smoking History,Alcohol Consumption History,
+Gastrointestinal_Surgery_History,Diarrhea,Gastrointestinal Bleeding,Vomiting,Abdominal_Complication_History,
+Anal_Complication_History,Frequency of Loose Stools,Extra-intestinal Manifestations,CDAI Score,
+Activity,RBC,HB,MCV,CRP(mg/l),TP,Urea Nitrogen,Serum Potassium,Uric Acid,Folic Acid (nmol/L),
+vitB12,Total Iron-Binding Capacity (umol/l),Serum Ferritin (ng/ml),Soluble Transferrin Receptor (mg/L),Nutritional Support Therapy
+'''
+
 # Streamlit UI
 st.title("Anal Complications Predictor for CD patient in coming 12 months")
 
@@ -14,13 +22,13 @@ st.title("Anal Complications Predictor for CD patient in coming 12 months")
 st.sidebar.header("Input Sample Data")  # 侧边栏输入样本数据
 
 # Course of diagnosis(确诊病程)
-cod = st.sidebar.number_input("Course of diagnosis (Months):", min_value=0, max_value=600, value=0)
+cod = st.sidebar.number_input("Course of diagnosis (Months):", min_value=0.0, max_value=600.0, value=0.0)
 
 # Duration input
-dur = st.sidebar.number_input("Duration:", min_value=0, max_value=600, value=0)
+dur = st.sidebar.number_input("Duration:", min_value=0.0, max_value=600.0, value=0.0)
 
 # Age of onset (确诊年龄)
-AOO = st.sidebar.number_input("Age of onset:", min_value=1, max_value=120, value=50)
+AOO = st.sidebar.number_input("Age of onset:", min_value=1.0, max_value=120.0, value=50.0)
 
 # Smoking History
 Smoke = st.sidebar.selectbox("Smoking History:", options=[0, 1], format_func=lambda x: 'Yes (1)' if x == 0 else 'No (0)')
@@ -47,35 +55,35 @@ ABCH = st.sidebar.selectbox("Abdominal Complication History:", options=[0, 1], f
 ANCH = st.sidebar.selectbox("Anal Complication History:", options=[0, 1], format_func=lambda x: 'Yes (1)' if x == 0 else 'No (0)')
 
 # Frequency of Loose Stools
-FOLS = st.sidebar.number_input("Frequency of Loose Stools\n(Consecutive 7 days):", min_value=0, max_value=600, value=0)
+FOLS = st.sidebar.number_input("Frequency of Loose Stools\n(Consecutive 7 days):", min_value=0.0, max_value=600.0, value=0.0)
 
 # Extra-intestinal Manifestations
 EIM = st.sidebar.selectbox("Extra-intestinal Manifestations\n(肠外表现并发症):", options=[0, 1], format_func=lambda x: 'Yes (1)' if x == 0 else 'No (0)')
 
 # CDAI Score
-CDAI = st.sidebar.number_input("CDAI Score:", min_value=0, max_value=1000, value=0)
+CDAI = st.sidebar.number_input("CDAI Score:",  min_value=0.0, max_value=1000.0, value=0.0)
 
 # Activity
 ACT = st.sidebar.selectbox("Activity:", options=[0, 1], format_func=lambda x: 'Active Disease (1)' if x == 0 else 'Remission (0)')
 
 # RBC,HB,MCV,CRP(mg/l),TP,Urea Nitrogen,Serum Potassium,Uric Acid,Folic Acid (nmol/L),vitB12
-RBC = st.sidebar.number_input("RBC (*10^12):", min_value=0, max_value=100, value=0)
-HB = st.sidebar.number_input("HB (g/L):", min_value=0, max_value=1000, value=0)
-MCV = st.sidebar.number_input("MCV (fL):", min_value=0, max_value=1000, value=0)
-CRP = st.sidebar.number_input("CRP (mg/L):", min_value=0, max_value=1000, value=0)
-TP = st.sidebar.number_input("Total Protein (g/L):", min_value=0, max_value=1000, value=0)
-UN = st.sidebar.number_input("Urea Nitrogen (mmol/L):", min_value=0, max_value=1000, value=0)
-SP = st.sidebar.number_input("Serum Potassium (mmol/L):", min_value=0, max_value=1000, value=0)
-UA = st.sidebar.number_input("Uric Acid (μmol/L):", min_value=0, max_value=1000, value=0)
-FA = st.sidebar.number_input("Folic Acid (nmol/L):", min_value=0, max_value=1000, value=0)
-V12 = st.sidebar.number_input("VitB12 (pmol/L):", min_value=0, max_value=2000, value=0)
+RBC = st.sidebar.number_input("RBC (*10^12):", min_value=0.0, max_value=1000.0, value=0.0)
+HB = st.sidebar.number_input("HB (g/L):", min_value=0.0, max_value=1000.0, value=0.0)
+MCV = st.sidebar.number_input("MCV (fL):", min_value=0.0, max_value=1000.0, value=0.0)
+CRP = st.sidebar.number_input("CRP (mg/L):", min_value=0.0, max_value=1000.0, value=0.0)
+TP = st.sidebar.number_input("Total Protein (g/L):", min_value=0.0, max_value=1000.0, value=0.0)
+UN = st.sidebar.number_input("Urea Nitrogen (mmol/L):", min_value=0.0, max_value=1000.0, value=0.0)
+SP = st.sidebar.number_input("Serum Potassium (mmol/L):", min_value=0.0, max_value=1000.0, value=0.0)
+UA = st.sidebar.number_input("Uric Acid (μmol/L):", min_value=0.0, max_value=1000.0, value=0.0)
+FA = st.sidebar.number_input("Folic Acid (nmol/L):", min_value=0.0, max_value=1000.0, value=0.0)
+V12 = st.sidebar.number_input("VitB12 (pmol/L):", min_value=0.0, max_value=1000.0, value=0.0)
 
 # Total Iron-Binding Capacity (umol/l) input
-TIBC = st.sidebar.number_input("TIBC (umol/l):", min_value=0, max_value=1000, value=45)
+TIBC = st.sidebar.number_input("TIBC (umol/l):", min_value=0.0, max_value=1000.0, value=45.0)
 
 # Serum Ferritin (ng/ml),Soluble Transferrin Receptor (mg/L)
-SF = st.sidebar.number_input("Serum Ferritin (ng/ml):", min_value=0, max_value=1000, value=0)
-STR = st.sidebar.number_input("Soluble Transferrin Receptor (mg/L):", min_value=0, max_value=1000, value=0)
+SF = st.sidebar.number_input("Serum Ferritin (ng/ml):", min_value=0.0, max_value=1000.0, value=0.0)
+STR = st.sidebar.number_input("Soluble Transferrin Receptor (mg/L):", min_value=0.0, max_value=1000.0, value=0.0)
 
 # Nutritional Support Therapy input
 NST = st.sidebar.selectbox("Nutritional Support Therapy:", options=[0, 1], format_func=lambda x: 'Yes (1)' if x == 0 else 'No (0)')
@@ -83,7 +91,7 @@ NST = st.sidebar.selectbox("Nutritional Support Therapy:", options=[0, 1], forma
 # Process the input and make a prediction
 feature_values = [cod, dur, AOO, Smoke, ACH, GSH, Dia, GB, Vom, ABCH, ANCH, FOLS, EIM, CDAI, ACT, 
                   RBC, HB, MCV, CRP, TP, UN, SP, UA, FA, V12, TIBC, SF, STR, NST]
-features = np.array([feature_values])  # 转换为NumPy数组
+features = np.array([feature_values])
 
 if st.button("Make Prediction"):  # 如果点击了预测按钮
     # Predict the class and probabilities
@@ -147,6 +155,3 @@ if st.button("Make Prediction"):  # 如果点击了预测按钮
     # Show the plot
 
     st.pyplot(plt)  # 显示图表
-
-
-
